@@ -46,7 +46,7 @@ MuJoCo refers to the version of the binaries, not the DeepMind python bindings.
 The major experiments (precise and fast reaching, hopping) can be repeated with the config files.
 Simply from the *src/* folder:
 ```
-python main.py config/arm_muscle_precise.yaml
+python main.py config/arm_muscle_precise_reaching.yaml
 ```
 to train an agent. Model checkpoints will be saved in the current directory. 
 The progress can be monitored with:
