@@ -20,7 +20,7 @@ of data-efficiency, hyperparameter sensitivity, and robustness
 To install the package, simply download the repo and install using pip:
 ```
 conda create -n warmup python==3.9
-git clone https://gitlab.is.tue.mpg.de/pschumacher/warmup/
+git clone https://github.com/martius-lab/learningwithmuscles
 pip install -e ./warmup
 pip install -r requirements.txt
 pip install -e ./mujoco_muscle_model/
