@@ -5,7 +5,7 @@ import warmup
 for env_str in ["muscle_arm-v0", "torque_arm-v0", "muscle_biped-v0", "torque_biped-v0"]:
     print(f"Testing {env_str}")
     env = gym.make(env_str)
-    for ep in range(10):
+    for ep in range(1):
         ep_steps = 0
         state = env.reset()
         while True:
