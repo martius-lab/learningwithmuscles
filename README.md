@@ -21,9 +21,9 @@ To install the package, simply download the repo and install using pip:
 ```
 conda create -n warmup python==3.9
 git clone https://github.com/martius-lab/learningwithmuscles
-pip install -e ./warmup
-pip install -r requirements.txt
-pip install -e ./mujoco_muscle_model/
+pip install -e ./src/warmup
+pip install -r ./src/warmup/requirements.txt
+pip install -e ./src/warmup/mujoco_muscle_model/
 ```
 Installing locally ensures that you can easily change environment parameters by modifying the param_files. 
 
@@ -84,7 +84,7 @@ for ep in range(5):
 
 Settings can be changed in the respective 
 ```
-*warmup/param_files/* 
+warmup/param_files/ 
 ```
 json files. Use the *ball_attached* attribute to enable the chaotic load for perturbations.
 
