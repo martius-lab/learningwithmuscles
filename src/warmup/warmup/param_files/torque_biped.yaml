@@ -1,0 +1,21 @@
+
+params_env:
+  frameskip: 5
+  muscle_morphology: "user"
+  morph_settings: [1, 1, 1]
+  target: [0.35, 0.85, 0.0]
+  random_goals: 0
+  dynamic_load: 0
+  sparse_reward: 0
+  termination: 1
+  termination_distance: 0.08
+  render: 0
+  gravity: [0, 0, -10]
+  eval_gravity: [0, 0, -10]
+  episode_length: 1000
+  ball_attached: 0
+  rew_args: 
+    hopping_drive: 1
+    leg_pain: 1.0e-3
+    action_cost: 1.0e-4
+

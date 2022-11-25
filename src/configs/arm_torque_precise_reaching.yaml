@@ -1,0 +1,29 @@
+main: 
+  header: "import gym, warmup; from custom_torso import custom_return_mpo;  from tonic.replays.buffers import Buffer; import gym; import custom_mpo_torch"
+  agent: "custom_mpo_torch.TunedMPO(model=custom_return_mpo(), replay=Buffer(return_steps=3, batch_size=256, steps_between_batches=1000, batch_iterations=30, steps_before_batches=5e4))"
+  environment: "tonic.environments.Gym('torque_arm-v0', scaled_actions=False)"
+  test_environment: null
+  trainer: "tonic.utils.trainer.Trainer(steps=int(1e8), epoch_steps=int(1e5), save_steps=int(1e6))"
+  before_training: ""
+  after_training: ""
+  parallel: 20
+  sequential: 10
+  seed: 0
+  name: "torque_arm_precise_reaching"
+  environment_name: "torque_arm"
+  checkpoint: "last"
+  path: ""
+
+env_params:
+  termination: 0
+  random_goals: 1
+  ball_attached: 0
+
+mpo_params:
+  lr_critic: 3.0e-4
+  lr_actor: 1.0e-3
+  lr_dual: 2.0e-2
+  retnorm: False
+  grad_clip_actor: 4.0e-5
+  grad_clip_critic: 3.0e-5
+

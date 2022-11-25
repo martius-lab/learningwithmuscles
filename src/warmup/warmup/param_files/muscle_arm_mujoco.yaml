@@ -1,0 +1,15 @@
+
+params_env:
+  frameskip: 2
+  muscle_morphology: "user"
+  morph_settings: [1,1,1]
+  target: [-0.35, 0.65, 0.0]
+  random_goals: 1
+  sparse_reward: 0
+  termination: 0
+  termination_distance: 0.05
+  render: 0,
+  gravity: [9.81, 0, 0]
+  eval_gravity: [9.81, 0, 0]
+  episode_length: 500
+  ball_attached: False

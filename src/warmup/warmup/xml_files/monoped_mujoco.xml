@@ -1,0 +1,119 @@
+<!-- Copyright 2021 DeepMind Technologies Limited
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<mujoco model="2-link 6-muscle arm">
+	<compiler inertiafromgeom="true"/>
+    <option timestep="0.005" integrator="RK4" gravity="0 0 -9.81"/>
+
+    <size njmax="100" nconmax="50" nstack="1000" nuserdata="200" nuser_actuator="4"/>
+
+    <visual>
+        <rgba haze=".1 .1 .1 1"/>
+    </visual>
+
+    <default>
+        <!--<geom conaffinity="1" condim="1" contype="1" margin="0.001" rgba="0.8 0.6 .4 1" solimp=".8 .8 .01" solref=".02 1" friction="0.9"/>-->
+		<!--<geom friction="0.9"/>-->
+        <!--<joint armature="0.0" type="hinge" pos="0 0 0" axis="1 0 0" limited="true" range="-120 120" damping="0.01"/>-->
+        <muscle ctrllimited="true" ctrlrange="0 1" scale="0"/>
+	<joint damping="0.0" armature="1" type="hinge" axis="1 0 0"/>
+	<geom  friction="0.9" conaffinity="1" condim="1" contype="1" margin="0.001"  solimp=".8 .8 .01" solref=".02 1"/>
+	<general dyntype="muscle" gaintype="muscle" biastype="muscle" dynprm="0.01 0.04"
+    gainprm="0.75 1.05 -1 6000 0.5 1.6 0.5 1.3 1.2" biasprm="0.75 1.05 -1 6000 0.5 1.6 0.5 1.3 1.2" ctrlrange="0 1" ctrllimited="true"/>
+    </default>
+
+    <asset>
+        <texture type="skybox" builtin="gradient" rgb1="0.6 0.6 0.6" rgb2="0 0 0" width="512" height="512"/>
+
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".25 .25 .25" rgb2=".3 .3 .3" width="512" height="512" mark="cross" markrgb=".8 .8 .8"/>
+
+        <material name="matplane" reflectance="0.3" texture="texplane" texrepeat="1 1" texuniform="true"/>
+    </asset>
+
+    <worldbody>
+    <geom name="floor" pos="0 0 -0.5" size="0 0 1" type="plane" material="matplane" conaffinity="1" condim="3" />
+      <light mode="trackcom" directional="true" diffuse=".8 .8 .8" specular="0.3 0.3 0.3" pos="0 0 4.0" dir="0 0 -1"></light>
+     
+	<site name="limit1" pos="0.0 0.6 -0.5" size="0.05" rgba="0.8 0.8 0.0 1"/>
+	<site name="limit2" pos="0.0 -0.6 -0.5" size="0.05" rgba="0.8 0.8 0.0 1"/>
+	<body name="pelvis" pos="0 0 2.0">
+	 	    <site name="eye1" pos="-0.03 -0.05 0.00" size="0.02" rgba="1 1 1 1"/>
+	    <site name="eye2" pos="0.03 -0.05 0.00" size="0.02" rgba="1 1 1 1"/>
+	    <geom name="torso" type="capsule" size="0.045" fromto="0 0 0  0 0 -0.8" rgba=".5 .1 .1 1"/>
+	    <joint name="torso_z" type="slide" axis="0 0 1" armature="1" damping="1.0" stiffness="0"/>
+	    <joint name="torso_y" type="slide" axis="0 1 0" armature="1" damping="1.0" stiffness="0"/>
+        <joint name="torso_tilt" type="hinge" axis="1 0 0" armature="1" damping="1.0" stiffness="0" limited="false"/>
+		<site name="bifemlh_r-P1" pos="0.0 0.00 0.00" size="0.02"/>
+		<site name="s3" pos="0.0 0.06 -0.69" size="0.02"/>
+		<site name="s4" pos="0.0 -0.06 -0.69" size="0.02"/>
+		<site name="x2" pos="0.0 -0.15 -0.8" size="0.02" rgba="0 .7 0 1" group="1"/>
+		<site name="x3" pos="0.0 0.15 -0.8" size="0.02" rgba="0 .7 0 1" group="1"/>
+
+
+		<body name="upperleg" pos="0 0 -0.8">
+            <joint name="hip" limited="true" range="-120 120"/>
+            <geom name="hip" zaxis="1 0 0" type="cylinder" pos="0 0 0.0" size=".1 .05" rgba=".5 .1 .8 .5" mass="0" group="1"/>
+		    <geom name="upperleg" type="capsule" size="0.045" fromto="0 0 0  0 0 -0.5" rgba=".5 .1 .1 1"/>
+                     <site name="s5" pos="0.0 0.06 -0.15" size="0.02"/>
+                     <site name="s6" pos="0.0 -0.06 -0.15" size="0.02"/>
+                     <site name="s7" pos="0.0 0.06 -0.4" size="0.02"/>
+                     <site name="s8" pos="0.0 -0.06 -0.4" size="0.02"/>
+                     <site name="x4" pos="0.0 -0.15 -0.5" size="0.02" rgba="0 .7 0 1" group="1"/>
+                     <site name="x5" pos="0.0 0.15 -0.5" size="0.02" rgba="0 .7 0 1" group="1"/>
+		    <body name="lowerleg" pos="0 0 -0.5">
+                <joint name="knee" range="-10 120" limited="true"/>
+                <geom name="knee" zaxis="1 0 0 " type="cylinder" pos="0 0 0" size=".08 .05" rgba=".5 .1 .8 .5" mass="0" group="1"/>
+                <geom name="lowerleg" type="capsule" size="0.035" fromto="0 0 0  0.0 0 -0.5" rgba=".5 .1 .1 1"/>
+		<site name="s9" pos="0.0 0.05 -0.11" size="0.02"/>
+		<site name="s10" pos="0.0 -0.05 -0.11" size="0.02"/>
+
+                </body>
+		</body>
+	</body>
+</worldbody>
+
+<tendon>
+        <spatial name="SF" width="0.01">
+            <site site="s3"/>
+            <geom geom="hip" sidesite="x3"/>
+            <site site="s5"/>
+        </spatial>
+
+        <spatial name="SE" width="0.01">
+            <site site="s4"/>
+            <geom geom="hip" sidesite="x2"/>
+            <site site="s6"/>
+        </spatial>
+ 
+         <spatial name="EF" width="0.01">
+             <site site="s7"/>
+             <geom geom="knee" sidesite="x5"/>
+             <site site="s9"/>
+         </spatial>
+ 
+         <spatial name="EE" width="0.01">
+             <site site="s8"/>
+             <geom geom="knee" sidesite="x4"/>
+             <site site="s10"/>
+         </spatial>
+ </tendon>
+
+<actuator>
+	<general name="SF" tendon="SF"  lengthrange="0.10248 0.340378"/>
+	<general name="SE" tendon="SE" lengthrange="0.340334 0.54"/>
+	<general name="EF" tendon="EF" lengthrange="0.0102 0.2164"/>
+	<general name="EE" tendon="EE" lengthrange="0.216 0.384"/>
+</actuator>
+</mujoco>

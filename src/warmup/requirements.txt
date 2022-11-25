@@ -1,0 +1,7 @@
+mujoco==2.2.0
+mujoco_py==2.1.2.14
+matplotlib
+scipy
+gym==0.13
+torch
+PyYaml

@@ -1,0 +1,24 @@
+{
+    "params_env":{
+      "name": "leg2dof4m-v0",
+      "timestep": 0.002,
+      "frameskip": 5,
+      "action_multiplier": 1,
+      "actuator": "motor",
+      "muscle_morphology": "mujoco",
+      "morph_settings": [1,1,1],
+      "antagonistic_motor": 0,
+      "monoarticular_muscle": 0,
+      "dyn_time": [0.01, 0.04],
+      "target": [0.35, 0.85, 0.0],
+      "random_goals": 1,
+      "dynamic_load": 0,
+      "sparse_reward": 0,
+      "termination": 1,
+      "termination_distance": 0.08,
+      "render": 0,
+      "gravity": [0, 0, -9.81],
+      "eval_gravity": [0, 0, -9.81],
+      "episode_length": 1000,
+      "rew_args":{"hopping_drive": 1}}
+}
