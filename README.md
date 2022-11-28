@@ -69,6 +69,8 @@ import gym
 import warmup
 
 env = gym.make("muscle_arm-v0")
+# for arm-based environments, you can test perturbations with
+# env.activate_ball()
 
 for ep in range(5):
      ep_steps = 0

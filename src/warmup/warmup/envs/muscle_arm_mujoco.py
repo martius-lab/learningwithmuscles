@@ -50,7 +50,7 @@ class MuscleArmMuJoCo(MuscleModelArm):
     @property
     def xml_path(self):
         if self.ball_attached:
-            return "xml_files/muscle_arm_mujoco.xml"
+            return "xml_files/muscle_arm_mujoco_ball.xml"
         else:
             return "xml_files/muscle_arm_mujoco.xml"
 
