@@ -23,7 +23,7 @@ conda create -n warmup python==3.9
 git clone https://github.com/martius-lab/learningwithmuscles
 pip install -e ./src/warmup
 pip install -r ./src/warmup/requirements.txt
-pip install -e ./src/warmup/mujoco_muscle_model/
+pip install -e ./src/warmup/muscle_mujoco_py/
 ```
 Installing locally ensures that you can easily change environment parameters by modifying the param_files. 
 
@@ -45,9 +45,9 @@ MuJoCo refers to the version of the binaries, not the DeepMind python bindings.
 ## Experiments 
 
 The major experiments (precise and fast reaching, hopping) can be repeated with the config files.
-Simply from the *src/* folder:
+Simply from the *src* folder:
 ```
-python main.py config/arm_muscle_precise_reaching.yaml
+python main.py configs/arm_muscle_precise_reaching.yaml
 ```
 to train an agent. Model checkpoints will be saved in the current directory. 
 The progress can be monitored with:

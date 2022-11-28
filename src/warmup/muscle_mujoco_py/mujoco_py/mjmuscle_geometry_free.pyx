@@ -88,6 +88,8 @@ cdef mjtNum FL(const mjModel *m, mjtNum lce, int id):
     """
     Force length
     """
+    # these correspond to the lmin lmax in the gainprm,
+    # not the ones used in the paper
     cdef mjtNum lmin = m.actuator_gainprm[id * mjNGAIN + 4]
     cdef mjtNum lmax = m.actuator_gainprm[id * mjNGAIN + 5]
     #return 1.0
@@ -215,11 +217,14 @@ cdef mjtNum geometry_free_muscle_bias(const mjModel *m, const mjData *d, int id)
     #cdef mjtNum phi_max = 0.8 * 3.14
     cdef mjtNum phi_min = -0.5 * 3.14
     cdef mjtNum phi_max = 0.5 * 3.14
+
     # corresponding min/max muscle lengths normalized by the optimal isometric length
+    # this corresponds to l_min/l_max in the paper, and range_0 range_1 in the mujoco
+    # gainprm
     cdef mjtNum lce_min = 0.75
     cdef mjtNum lce_max = 1.05
     # ----------------user parameters ------------------------
-
+    
     cdef antagonistic_params params = compute_parametrization(phi_min, phi_max, lce_min, lce_max)
     cdef antagonistic_lengths lengths = compute_virtual_lengths(m, d, &params, id)
     d.userdata[m.nuserdata - (2 * m.nu) + 2 * id] = lengths.lce_1

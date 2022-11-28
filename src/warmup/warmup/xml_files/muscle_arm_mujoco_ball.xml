@@ -24,9 +24,10 @@
 	<quality shadowsize="10000" offsamples="32" numslices="64" numquads="32"/>
     </visual>
 
+	<!--gainprm[0] and gainprm[1] are not used from here but are written inside the corresponding xml file.-->
     <default>
         <joint type="hinge" pos="0 0 0" axis="0 0 1" limited="true" range="-120 120" damping="0.1"/>
-        <general gaintype="user" dyntype="user" biastype="user" ctrllimited="true" ctrlrange="0 1" gainprm="0.75 1.05 500 200 0.5 1.6 0.5 1.3 1.2" biasprm="0.75 1.05 500 200 0.5 1.6 1.0 1.3 1.2"/>
+        <general gaintype="user" dyntype="user" biastype="user" ctrllimited="true" ctrlrange="0 1" gainprm="0 0 500 200 0.5 1.6 0.5 1.3 1.2" biasprm="0 0 500 200 0.5 1.6 1.0 1.3 1.2"/>
     </default>
 
     <asset>
