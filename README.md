@@ -1,9 +1,11 @@
 # Learning with Muscles: Benefits for Data-Efficiency and Robustness in Anthropomorphic Tasks
 
- This repo contains several muscle-driven MuJoCo environments used for the [Learning with Muscles: Benefits for Data-Efficiency
-and Robustness in Anthropomorphic Tasks](https://openreview.net/forum?id=Xo3eOibXCQ8) paper, published at CoRL 2022.
+ This repo contains several muscle-driven MuJoCo environments used for the RL experiments in [Learning with Muscles: Benefits for Data-Efficiency
+and Robustness in Anthropomorphic Tasks](https://openreview.net/forum?id=Xo3eOibXCQ8) paper, published at CoRL 2022. See [here](https://sites.google.com/view/learning-with-muscles/home) for videos and MPC/OC code.
 
 The work was performed by Isabell Wochner* and Pierre Schumacher* (equal contribution), Georg Martius, Dieter Büchler, Syn Schmitt* and Daniel F.B. Haeufle* (equal contribution).
+
+
 ## Abstract
 Humans are able to outperform robots in terms of robustness, versatility,
 and learning of new tasks in a wide variety of movements. We hypothesize that
